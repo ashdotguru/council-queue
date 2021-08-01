@@ -305,14 +305,13 @@
       },
       save () {
         this.submitting = true
-        this.success = null
-        this.error = null
-        this.errors = {}
 
         axios.post('customers', this.customer)
           .then(response => {
             this.submitting = false
             this.success = response.data.message
+            this.error = null
+            this.errors = {}
             this.customer = {
               service: null,
               type: 'anonymous',
@@ -328,6 +327,9 @@
           })
           .catch(error => {
             this.submitting = false
+            this.success = null
+            this.error = null
+            this.errors = {}
 
             if (error.response && error.response.data.errors) {
               this.errors = error.response.data.errors
@@ -341,13 +343,12 @@
       destroy (id) {
         if (confirm('Are you sure you want to remove this customer from the queue?')) {
           this.submitting = true
-          this.success = null
-          this.error = null
 
           axios.delete(`customers/${id}`)
             .then(response => {
               this.submitting = false
               this.success = response.data.message
+              this.error = null
 
               this.$store.commit('removeCustomer', id)
 
@@ -355,6 +356,7 @@
             })
             .catch(error => {
               this.submitting = false
+              this.success = null
               this.error = error.message
 
               this.scrollTop()
