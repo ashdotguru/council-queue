@@ -30,7 +30,7 @@ class Citizen extends Model
      */
     public function getNameAttribute()
     {
-        return "{$this->title} {$this->first_name} {$this->last_name}";
+        return "{$this->first_name} {$this->last_name}";
     }
 
     /**

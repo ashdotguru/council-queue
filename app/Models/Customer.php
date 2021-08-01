@@ -45,7 +45,7 @@ class Customer extends Model
      *
      * @var array
      */
-    protected $appends = ['avatar', 'name', 'type'];
+    protected $appends = ['avatar', 'full_name', 'name', 'type'];
 
     /**
      * Get the customer's avatar.
@@ -55,6 +55,20 @@ class Customer extends Model
     public function getAvatarAttribute()
     {
         return "https://eu.ui-avatars.com/api/?name={$this->name}";
+    }
+
+    /**
+     * Get the customer's full name.
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        if ($this->customer && $this->customer->title) {
+            return "{$this->customer->title} {$this->name}";
+        }
+
+        return $this->name;
     }
 
     /**
