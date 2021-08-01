@@ -45,7 +45,17 @@ class Customer extends Model
      *
      * @var array
      */
-    protected $appends = ['name', 'type'];
+    protected $appends = ['avatar', 'name', 'type'];
+
+    /**
+     * Get the customer's avatar.
+     *
+     * @return string
+     */
+    public function getAvatarAttribute()
+    {
+        return "https://eu.ui-avatars.com/api/?name={$this->name}";
+    }
 
     /**
      * Get the customer's name.
@@ -81,6 +91,14 @@ class Customer extends Model
     public function customer()
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Get the parent service.
+     */
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
     }
 
     /**

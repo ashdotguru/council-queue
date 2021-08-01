@@ -12,6 +12,27 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .vue({ version: 3 })
     .postCss('resources/css/app.css', 'public/css', [
         require("tailwindcss"),
-    ]);
+    ])
+    .version();
+
+// mix.alias({
+//     'vue': 'vue/dist/vue.esm-bundler.js'
+// });
+
+mix.autoload({
+    'lodash': '_'
+});
+
+mix.webpackConfig((webpack) => {
+    return {
+        plugins: [
+            new webpack.DefinePlugin({
+                __VUE_OPTIONS_API__: true,
+                __VUE_PROD_DEVTOOLS__: false,
+            }),
+        ],
+    };
+})

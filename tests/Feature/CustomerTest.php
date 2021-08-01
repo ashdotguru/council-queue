@@ -48,7 +48,13 @@ class CustomerTest extends TestCase
             'type' => 'anonymous',
         ]);
 
-        $response->assertStatus(201);
+        $response
+            ->assertStatus(201)
+            ->assertJson([
+                'customer' => [
+                    'type' => 'Anonymous',
+                ],
+            ]);
     }
 
     /**
@@ -68,7 +74,13 @@ class CustomerTest extends TestCase
             'last_name' => $citizen->last_name,
         ]);
 
-        $response->assertStatus(201);
+        $response
+            ->assertStatus(201)
+            ->assertJson([
+                'customer' => [
+                    'type' => 'Citizen',
+                ],
+            ]);
     }
 
     /**
@@ -86,6 +98,26 @@ class CustomerTest extends TestCase
             'name' => $organisation->name,
         ]);
 
-        $response->assertStatus(201);
+        $response
+            ->assertStatus(201)
+            ->assertJson([
+                'customer' => [
+                    'type' => 'Organisation',
+                ],
+            ]);
+    }
+
+    /**
+     * Test a customer can be deleted.
+     *
+     * @return void
+     */
+    public function test_customer_can_be_deleted()
+    {
+        $customer = Customer::factory()->create();
+
+        $response = $this->deleteJson("/customers/{$customer->id}");
+
+        $response->assertStatus(200);
     }
 }

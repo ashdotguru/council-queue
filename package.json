@@ -16,9 +16,13 @@
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.3.6",
-        "tailwindcss": "^2.2.7"
+        "tailwindcss": "^2.2.7",
+        "vue-loader": "^16.4.0"
     },
     "dependencies": {
-        "vue": "^3.1.5"
+        "@tailwindcss/forms": "^0.3.3",
+        "vue": "^3.1.5",
+        "vue-router": "^4.0.10",
+        "vuex": "^4.0.2"
     }
 }

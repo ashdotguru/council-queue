@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [CustomersController::class, 'index']);
 Route::post('/customers', [CustomersController::class, 'store']);
 Route::delete('/customers/{customer}', [CustomersController::class, 'destroy']);
+
+Route::fallback([CustomersController::class, 'index']);
