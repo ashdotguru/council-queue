@@ -195,6 +195,9 @@
             <table class="min-w-full divide-y divide-gray-200">
               <thead class="bg-gray-50">
                 <tr>
+                  <th scope="col" class="pl-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    #
+                  </th>
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Customer
                   </th>
@@ -214,6 +217,11 @@
                   v-for="(customer, index) in $store.state.customers"
                   :key="customer.id"
                 >
+                  <td class="pl-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-500">
+                      {{ index + 1 }}
+                    </div>
+                  </td>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
                       <div class="flex-shrink-0 h-10 w-10">
